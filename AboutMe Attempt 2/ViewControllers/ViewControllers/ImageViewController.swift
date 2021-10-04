@@ -10,7 +10,7 @@ import UIKit
 class ImageViewController: UIViewController {
     
     var user: User!
-
+    
     @IBOutlet var avatarImageView: UIImageView!
     
     override func viewDidLoad() {
@@ -23,3 +23,4 @@ class ImageViewController: UIViewController {
         
     }
 }
+

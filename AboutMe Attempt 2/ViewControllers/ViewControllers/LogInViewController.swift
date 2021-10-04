@@ -8,7 +8,7 @@
 import UIKit
 
 class LogInViewController: UIViewController {
-
+    
     @IBOutlet var userNameTF: UITextField!
     @IBOutlet var passwordTF: UITextField!
     
@@ -30,8 +30,8 @@ class LogInViewController: UIViewController {
         }
     }
     
-
-    @IBAction func logInButtonPressed(_ sender: Any) {
+    
+    @IBAction func logInButtonPressed() {
         if userNameTF.text != user.login || passwordTF.text != user.password {
             showAlert(title: "Invalid login or password", message: "Please, enter correct login and password")
             passwordTF.text = ""
@@ -51,7 +51,7 @@ class LogInViewController: UIViewController {
     }
     
 }
- 
+
 extension LogInViewController {
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(
@@ -64,6 +64,22 @@ extension LogInViewController {
         alert.addAction(okAction)
         present(alert, animated: true)
     }
+    
 }
 
-
+extension LogInViewController: UITextFieldDelegate {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == userNameTF {
+            passwordTF.becomeFirstResponder()
+        } else {
+            logInButtonPressed()
+            performSegue(withIdentifier: "showWelcomeVC", sender: nil)
+        }
+        return true
+    }
+}

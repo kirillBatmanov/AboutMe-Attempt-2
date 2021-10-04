@@ -8,9 +8,9 @@
 import UIKit
 
 class AboutMeViewController: UIViewController {
-
+    
     var user: User!
-
+    
     @IBOutlet var aboutMeLabel: UILabel!
     
     override func viewDidLoad() {
@@ -21,6 +21,6 @@ class AboutMeViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let imageVC = segue.destination as? ImageViewController else { return }
-                imageVC.user = user
+        imageVC.user = user
     }
 }
